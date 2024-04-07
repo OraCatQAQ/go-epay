@@ -23,11 +23,13 @@ type Client struct {
 }
 
 // NewClient 创建一个新的易支付客户端
-func NewClient(config *Config, baseUrl string) *Client {
-	u, _ := url.Parse(baseUrl)
-
+func NewClient(config *Config, baseUrl string) (*Client, error) {
+	u, err := url.Parse(baseUrl)
+	if err != nil {
+		return nil, err
+	}
 	return &Client{
 		Config:  config,
 		BaseUrl: u,
-	}
+	}, nil
 }
