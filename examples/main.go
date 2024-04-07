@@ -9,10 +9,13 @@ import (
 )
 
 func main() {
-	client := epay.NewClient(&epay.Config{
+	client, err := epay.NewClient(&epay.Config{
 		PartnerID: "1000",
 		Key:       "KEY",
 	}, "http://localhost:3111")
+	if err != nil {
+		log.Panicln(err)
+	}
 	notify, _ := url.Parse("http://localhost:3111/verify")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
