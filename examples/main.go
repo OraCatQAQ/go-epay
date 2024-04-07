@@ -9,14 +9,15 @@ import (
 )
 
 func main() {
+	baseUrl := "http://localhost:8080"
 	client, err := epay.NewClient(&epay.Config{
 		PartnerID: "1000",
 		Key:       "KEY",
-	}, "http://localhost:3111")
+	}, baseUrl)
 	if err != nil {
 		log.Panicln(err)
 	}
-	notify, _ := url.Parse("http://localhost:3111/verify")
+	notify, _ := url.Parse(baseUrl + "/verify")
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		url, params, err := client.Purchase(&epay.PurchaseArgs{
