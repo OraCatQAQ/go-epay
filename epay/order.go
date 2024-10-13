@@ -6,13 +6,6 @@ import (
 	"github.com/mitchellh/mapstructure"
 )
 
-type PurchaseType string
-
-var (
-	Alipay    PurchaseType = "alipay" // Alipay 支付宝
-	WechatPay PurchaseType = "wxpay"  // WechatPay 微信
-)
-
 type DeviceType string
 
 var (
@@ -22,7 +15,7 @@ var (
 
 type PurchaseArgs struct {
 	// 支付类型
-	Type PurchaseType
+	Type string
 	// 商家订单号
 	ServiceTradeNo string
 	// 商品名称
@@ -44,7 +37,7 @@ func (c *Client) Purchase(args *PurchaseArgs) (string, map[string]string, error)
 	// see https://payment.moe/doc.html
 	requestParams := map[string]string{
 		"pid":          c.Config.PartnerID,
-		"type":         string(args.Type),
+		"type":         args.Type,
 		"out_trade_no": args.ServiceTradeNo,
 		"notify_url":   args.NotifyUrl.String(),
 		"name":         args.Name,
@@ -67,7 +60,7 @@ const StatusTradeSuccess = "TRADE_SUCCESS"
 
 type VerifyRes struct {
 	// 支付类型
-	Type PurchaseType
+	Type string
 	// 易支付订单号
 	TradeNo string `mapstructure:"trade_no"`
 	// 商家订单号
