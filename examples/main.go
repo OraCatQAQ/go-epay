@@ -21,7 +21,7 @@ func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/", func(writer http.ResponseWriter, request *http.Request) {
 		url, params, err := client.Purchase(&epay.PurchaseArgs{
-			Type:           epay.WechatPay,
+			Type:           "wxpay",
 			ServiceTradeNo: "8412317576584121",
 			Name:           "test",
 			Money:          "0.01",
