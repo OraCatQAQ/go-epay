@@ -2,6 +2,7 @@ package epay
 
 import (
 	"net/url"
+	"path"
 
 	"github.com/mitchellh/mapstructure"
 )
@@ -48,10 +49,11 @@ func (c *Client) Purchase(args *PurchaseArgs) (string, map[string]string, error)
 		"sign":         "",
 	}
 
-	u, err := c.BaseUrl.Parse(PurchaseUrl)
+	u, err := url.Parse(c.BaseUrl.String())
 	if err != nil {
 		return "", nil, err
 	}
+	u.Path = path.Join(u.Path, PurchaseUrl)
 
 	return u.String(), GenerateParams(requestParams, c.Config.Key), nil
 }
