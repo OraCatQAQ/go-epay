@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/Calcium-Ion/go-epay/epay"
+	"github.com/OraCatQAQ/go-epay/epay"
 	"github.com/samber/lo"
 	"log"
 	"net/http"
