@@ -30,7 +30,7 @@ type PurchaseArgs struct {
 }
 
 const (
-	PurchaseUrl = "/submit.php"
+	PurchaseUrl = "/payment/do.html"
 )
 
 // Purchase 生成支付链接和参数
