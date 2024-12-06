@@ -1,6 +1,8 @@
-module github.com/OraCatQAQ/go-epay
+module github.com/Calcium-Ion/go-epay
 
 go 1.20
+
+replace github.com/Calcium-Ion/go-epay => github.com/OraCatQAQ/go-epay v0.0.0
 
 require (
 	github.com/mitchellh/mapstructure v1.5.0
